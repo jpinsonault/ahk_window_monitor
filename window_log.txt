@@ -1,0 +1,75 @@
+10/29/2013 16:14:23,46,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:24,16,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:25,15,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:26,0,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:27,125,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:28,16,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:29,234,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:30,0,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:31,109,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:32,15,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:33,921,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:34,530,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:35,1528,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:36,2527,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:37,171,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:38,484,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:39,1482,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:40,2480,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:41,3479,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:14:42,0,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:14:43,63,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:44,47,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:45,93,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:46,609,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:47,1607,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:48,94,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:49,78,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:50,93,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:51,63,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:52,31,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:53,78,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:54,203,ahk fileappend examples - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:55,15,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:56,16,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:57,15,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:58,219,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:14:59,15,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:00,250,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:00,1248,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:02,15,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:02,874,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:03,795,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:04,1794,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:05,2792,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:06,3790,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:07,4789,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:08,5787,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:09,312,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:10,359,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:11,78,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:12,312,ahk get information about active window - Google Search - Google Chrome,1936,1056,-8,-8
+10/29/2013 16:15:13,140,Steam,1280,1018,113,0
+10/29/2013 16:15:14,16,Steam,1280,1018,113,0
+10/29/2013 16:15:15,16,,,,,
+10/29/2013 16:15:16,0,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:17,640,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:18,15,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:19,578,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:20,1576,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:21,0,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:15:22,16,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:15:23,218,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:24,203,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:25,874,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:26,0,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:27,16,window_log.txt - Notepad,1080,655,-1415,131
+10/29/2013 16:15:28,0,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:15:29,156,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:15:30,15,ahk_usage_tracker,1200,688,-1242,189
+10/29/2013 16:15:31,141,Steam,1280,1018,113,0
+10/29/2013 16:15:32,312,Steam,1280,1018,113,0
+10/29/2013 16:15:33,0,Steam,1280,1018,113,0
+10/29/2013 16:15:34,16,,,,,
+10/29/2013 16:15:35,437,MINGW32:/c/Users/joe/Documents/ahk_usage_tracker,677,392,200,200
+10/29/2013 16:15:36,266,MINGW32:/c/Users/joe/Documents/ahk_usage_tracker,677,392,200,200
