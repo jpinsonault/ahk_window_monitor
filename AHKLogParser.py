@@ -134,6 +134,10 @@ class Activity:
         self.data['fullscreen'] = Utils.is_fullscreen(log_line)
         self.data['monitor_number'] = Utils.get_monitor(log_line)
 
+    def __getitem__(self, key):
+        """Overloading index operator so Activity's can be treated like a dict"""
+        return self.data[key]
+
     def is_same(self, other):
         """
             Compares this activity to the given activiy.

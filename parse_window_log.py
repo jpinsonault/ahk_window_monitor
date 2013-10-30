@@ -20,7 +20,7 @@ def main(args):
         "duration": ["gt", 50]
     }
 
-    pprint(["{} - {}".format(line.get_dict()["classification"], line.get_dict()["window_title"]) for line in parser.filter_by(filters)])
+    pprint(["{} - {}".format(activity["classification"], activity["window_title"]) for activity in parser.filter_by(filters)])
 
     print("{} lines in log file, {} distinct activities".format(len(parser.log_dict), len(parser.activity_log)))
 
