@@ -17,7 +17,7 @@ def main(args):
 
     filters = {
         "active": True,
-        "duration": ["gt", 50]
+        "duration": ["gdt", 50]
     }
 
     pprint(["{} - {}".format(activity["classification"], activity["window_title"]) for activity in parser.filter_by(filters)])
