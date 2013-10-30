@@ -97,12 +97,13 @@ class AHKLogParser(object):
         class_filters = filters["classification"][1]
         classifier = activity.data["classification"]
 
-        filter_generator = (class_filter in classifier for class_filter in class_filters)
+        # Returns list of bools
+        filter_results = [class_filter in classifier for class_filter in class_filters]
 
         if comparator == "all":
-            return all(filter_generator)
+            return all(filter_results)
         elif comparator == "any":
-            return any(filter_generator)
+            return any(filter_results)
         else:
             raise Exception("Invalid Comparator")
 
@@ -162,18 +163,20 @@ class Utils:
     GRANULARITY = 1
     IDLE_THRESHOLD = 30000
 
-    classifiers = [
-        {"browser": r"(Google Chrome)|(Firefox)"},
-        {"school": r"(CS 311)|(CS311)|(Quantified Life)|(PSU)|(Theory of Computation)"},
-        {"command_line": r"(MINGW32)|(cmd.exe)"},
-        {"text_editor": r"(Sublime Text)|(notepad)"},
-        {"programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)"},
-        {"social": r"(Facebook)|(- chat -)"},
-        {"email": r"(Gmail)"},
-        {"games": r"(Nexus Mod Manager)|(Steam)"},
-        {"stack_exchange": r"(Stack Overflow)"},
-        {"search": r"(Google)"},
-    ]
+    classifiers = {
+        "browser": r"(Google Chrome)|(Firefox)",
+        "school": r"(CS 311)|(CS311)|(Quantified Life)|(PSU)|(Theory of Computation)",
+        "command_line": r"(MINGW32)|(cmd.exe)",
+        "text_editor": r"(Sublime Text)|(notepad)",
+        "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)",
+        "social": r"(Facebook)|(- chat -)",
+        "entertainment": r"(reddit)|(imgur)",
+        "chat": r"(- chat -)",
+        "email": r"(- Gmail -)",
+        "games": r"(Nexus Mod Manager)|(Steam)|(skyrim)",
+        "stack_exchange": r"(Stack Overflow)",
+        "search": r"(Google Search)",
+    }
 
     @staticmethod
     def is_active(log_line):
@@ -185,13 +188,14 @@ class Utils:
 
         window_title = log_line["window_title"]
 
-        classes = [classifier.key() for classifier in Utils.classifiers
+        classes = [class_name for class_name, classifier in Utils.classifiers.iteritems()
             if Utils.match_classifier(window_title, classifier)]
 
         return classes
 
+    @staticmethod
     def match_classifier(window_title, classifier):
-        pass
+        return re.search(classifier, window_title, re.IGNORECASE)
 
     @staticmethod
     def is_fullscreen(log_line):
