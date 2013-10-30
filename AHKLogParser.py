@@ -1,4 +1,5 @@
 import csv
+import re
 
 
 class AHKLogParser(object):
@@ -58,6 +59,65 @@ class AHKLogParser(object):
     def save_parsed_output(self, filename):
         pass
 
+    def get_idle(self):
+        pass
+
+    def get_active(self):
+        pass
+
+    def filter_by(self, filters={}):
+        """
+            Filters: {"active":True, "classification":("any", ("school", "facebook")), "duration":("lt", 200)}
+
+        """
+        filtered_data = []
+
+        for activity in self.activity_log:
+            if self.filter(activity, filters):
+                filtered_data.append(activity)
+
+        return filtered_data
+
+    def filter(self, activity, filters):
+        """returns true activity matches the filters"""
+
+        match = True
+
+        if "active" in filters:
+            match = match and activity.data["active"] == filters["active"]
+        if "classification" in filters:
+            match = match and self.match_classifier(activity, filters)
+        if "duration" in filters:
+            match = match and self.match_duration(activity, filters)
+
+        return match
+
+    def match_classifier(self, activity, filters):
+        comparator = filters["classification"][0]
+        class_filters = filters["classification"][1]
+        classifier = activity.data["classification"]
+
+        filter_generator = (class_filter in classifier for class_filter in class_filters)
+
+        if comparator == "all":
+            return all(filter_generator)
+        elif comparator == "any":
+            return any(filter_generator)
+        else:
+            raise Exception("Invalid Comparator")
+
+    def match_duration(self, activity, filters):
+        comparator = filters["duration"][0]
+        duration_filter = filters["duration"][1]
+        activity_duration = activity.data["duration"]
+
+        if comparator == "lt":
+            return activity_duration <= duration_filter
+        elif comparator == "gt":
+            return activity_duration >= duration_filter
+        else:
+            raise Exception("Invalid Comparator")
+
 
 class Activity:
     """This class holds the data describing the activity and methods to work with the data"""
@@ -90,7 +150,13 @@ class Activity:
 
 
 class Utils:
-    """Utility functions for parsing the log files"""
+    """
+        Utility functions for parsing the log files
+
+        Todo:
+            - Need to take into account breaks in log. If computer is put to sleep,
+            logging is paused, etc.
+    """
 
     # Granularity of log file
     GRANULARITY = 1
@@ -115,6 +181,16 @@ class Utils:
 
     @staticmethod
     def classify(log_line):
+        classes = []
+
+        window_title = log_line["window_title"]
+
+        classes = [classifier.key() for classifier in Utils.classifiers
+            if Utils.match_classifier(window_title, classifier)]
+
+        return classes
+
+    def match_classifier(window_title, classifier):
         pass
 
     @staticmethod
