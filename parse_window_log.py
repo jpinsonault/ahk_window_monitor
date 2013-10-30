@@ -17,12 +17,14 @@ def main(args):
 
     filters = {
         "active": True,
-        "duration": ["gdt", 50]
+        "is_classified": False
     }
 
-    pprint(["{} - {}".format(activity["classification"], activity["window_title"]) for activity in parser.filter_by(filters)])
+    filtered_data = ["{} - {}".format(activity["classification"], activity["window_title"]) for activity in parser.filter_by(filters)]
 
-    print("{} lines in log file, {} distinct activities".format(len(parser.log_dict), len(parser.activity_log)))
+    pprint(filtered_data)
+
+    print("{} activity found, {} lines in log file, {} distinct activities".format(len(filtered_data), len(parser.log_dict), len(parser.activity_log)))
 
 if __name__ == '__main__':
     main(parse_args())

@@ -67,8 +67,7 @@ class AHKLogParser(object):
 
     def filter_by(self, filters={}):
         """
-            Filters: {"active":True, "classification":("any", ("school", "facebook")), "duration":("lt", 200)}
-
+            Filters: {"active":True, "classification":["any", ["school", "facebook"]], "duration":["lt", 200]}
         """
         filtered_data = []
 
@@ -84,18 +83,20 @@ class AHKLogParser(object):
         match = True
 
         if "active" in filters:
-            match = match and activity.data["active"] == filters["active"]
+            match = match and activity["active"] == filters["active"]
         if "classification" in filters:
             match = match and self.match_classifier(activity, filters)
         if "duration" in filters:
             match = match and self.match_duration(activity, filters)
+        if "is_classified" in filters:
+            match = match and activity.is_classified() == filters["is_classified"]
 
         return match
 
     def match_classifier(self, activity, filters):
         comparator = filters["classification"][0]
         class_filters = filters["classification"][1]
-        classifier = activity.data["classification"]
+        classifier = activity["classification"]
 
         # Returns list of bools
         filter_results = [class_filter in classifier for class_filter in class_filters]
@@ -146,6 +147,9 @@ class Activity:
         return (other.data['active'] == self.data['active'] and
             other.data['classification'] == self.data['classification'] and
             other.data['window_title'] == self.data['window_title'])
+
+    def is_classified(self):
+        return len(self.data["classification"]) > 0
 
     def increment_duration(self):
         self.data["duration"] += Utils.GRANULARITY
