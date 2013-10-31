@@ -1,5 +1,7 @@
 import csv
 import re
+import time
+from datetime import datetime
 
 
 class AHKLogParser(object):
@@ -45,16 +47,16 @@ class AHKLogParser(object):
         current_activity = None
         self.activity_log = []
 
-        for index, line in enumerate(self.log_dict):
+        for log_line in self.log_dict:
             if current_activity is None:
-                current_activity = Activity(line)
+                current_activity = Activity(log_line)
 
-            elif current_activity.is_same(Activity(line)) == True:
+            elif current_activity.is_same(Activity(log_line)) == True:
                 current_activity.increment_duration()
 
             else:
                 self.activity_log.append(current_activity)
-                current_activity = Activity(line)
+                current_activity = Activity(log_line)
 
     def save_parsed_output(self, filename):
         pass
@@ -136,6 +138,53 @@ class AHKLogParser(object):
         else:
             raise Exception("Invalid Comparator")
 
+    def count_by_classifications(self, filter_options={}):
+        if filter_options:
+            activity_log = self.filter_by(filter_options)
+        else:
+            activity_log = self.activity_log
+
+        # counts = {classification: 0 for classification in Utils.classifications.keys()}
+        counts = dict((classification, 0) for classification in Utils.classifiers.keys())
+        counts["other"] = 0
+
+        for activity in activity_log:
+            for classification in activity["classification"]:
+                counts[classification] += activity["duration"]
+
+        return counts
+
+    def count_by(self, count_property, filter_options={}):
+        """
+            Count the seconds spent doing something.
+            count_property specifies the propery (classification, monitor_number, etc)
+                you want use as the bins the time is added up in.
+                
+            For example, count the amount of time spent in different classifications of activities
+                or the amount of time spent using one monitor or the other
+
+            filter_options can further wittle down the activities you're looking at.
+        """
+
+        # Classifications is a special case
+        if count_property == "classification":
+            return self.count_by_classifications(filter_options)
+
+        if filter_options:
+            activity_log = self.filter_by(filter_options)
+        else:
+            activity_log = self.activity_log
+
+        counts = {}
+
+        for activity in activity_log:
+            if activity[count_property] in counts:
+                counts[activity[count_property]] += activity["duration"]
+            else:
+                counts[activity[count_property]] = activity["duration"]
+
+        return counts
+
 
 class Activity:
     """This class holds the data describing the activity and methods to work with the data"""
@@ -157,12 +206,24 @@ class Activity:
 
     def is_same(self, other):
         """
-            Compares this activity to the given activiy.
+            Compares this activity to the given activity.
             Returns true if considered the same, false otherwise
         """
         return (other.data['active'] == self.data['active'] and
             other.data['classification'] == self.data['classification'] and
-            other.data['window_title'] == self.data['window_title'])
+            other.data['window_title'] == self.data['window_title'] and
+            not self.check_long_pause(other))
+
+    def check_long_pause(self, other):
+        """
+            Checks for a long pause between the timestamp of this activity 
+            compared to the other activity
+        """
+
+        this_timestamp = time.mktime(time.strptime(self.data["start_time"], Utils.TIME_TEMPLATE)) + int(self.data["duration"]) - 1
+        other_timestamp = time.mktime(time.strptime(other.data["start_time"], Utils.TIME_TEMPLATE))
+
+        return other_timestamp - this_timestamp > Utils.LONG_PAUSE
 
     def is_classified(self):
         return len(self.data["classification"]) > 0
@@ -177,29 +238,29 @@ class Activity:
 class Utils:
     """
         Utility functions for parsing the log files
-
-        Todo:
-            - Need to take into account breaks in log. If computer is put to sleep,
-            logging is paused, etc.
     """
 
     # Granularity of log file
     GRANULARITY = 1
     IDLE_THRESHOLD = 30000
+    # 10/29/2013 16:14:40
+    TIME_TEMPLATE = "%m/%d/%Y %H:%M:%S"
+    LONG_PAUSE = 60*60*2
 
     classifiers = {
         "browser": r"(Google Chrome)|(Firefox)",
         "school": r"(CS 311)|(CS311)|(Quantified Life)|(PSU)|(Theory of Computation)",
         "command_line": r"(MINGW32)|(cmd.exe)",
         "text_editor": r"(Sublime Text)|(notepad)",
-        "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)",
+        "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)|(ahk_usage_tracker)",
         "social": r"(Facebook)|(- chat -)",
         "entertainment": r"(reddit)|(imgur)",
         "chat": r"(- chat -)",
         "email": r"(- Gmail -)",
-        "games": r"(Nexus Mod Manager)|(Steam)|(skyrim)",
+        "games": r"(Nexus Mod Manager)|(Steam)|(skyrim)|(max payne)",
         "stack_exchange": r"(Stack Overflow)",
         "search": r"(Google Search)",
+        "system": r"(Task Switching)|(Start Menu)|(jdiskreport)|(Libraries)|(Documents)|(\d ((\w+) )*remaining)|(\(\w:\))|(dropbox)",
     }
 
     @staticmethod
@@ -215,6 +276,9 @@ class Utils:
         classes = [class_name for class_name, classifier in Utils.classifiers.iteritems()
             if Utils.match_classifier(window_title, classifier)]
 
+        if not classes:
+        	classes = ["other"]
+
         return classes
 
     @staticmethod
@@ -228,5 +292,11 @@ class Utils:
 
     @staticmethod
     def get_monitor(log_line):
-        # TODO
-        return 0
+        # print("{}, {}".format(log_line["x"], log_line["x"] >= 0))
+        try:
+            if int(log_line["x"]) >= -8:
+                return 0
+            else:
+                return 1
+        except ValueError:
+            return 0
