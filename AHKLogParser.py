@@ -67,7 +67,23 @@ class AHKLogParser(object):
 
     def filter_by(self, filters={}):
         """
-            Filters: {"active":True, "classification":["any", ["school", "facebook"]], "duration":["lt", 200]}
+            Example filter object:
+                {"active":True, "classification":["any", ["school", "facebook"]], "duration":["lt", 200]}
+            Options:
+                active: True/False
+                    Was the user active during this activity
+
+                classification: ["any/all", ["list", "of", "classifications"]]
+                    any - If any of the classifiers match the activity matches
+                    all - All the classifiers have to match
+                    The second option is a list of classifiers to match against
+
+                duration: ["lt/gt", length_in_seconds]
+                    lt/gt stand for less/greater than or equal
+                    The duration is the amount of time spent in the activity
+
+                is_classified: True/False
+                    Was the activity put into a category
         """
         filtered_data = []
 
