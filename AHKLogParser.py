@@ -250,7 +250,7 @@ class Utils:
     classifiers = {
         "browser": r"(Google Chrome)|(Firefox)",
         "school": r"(CS 311)|(CS311)|(Quantified Life)|(PSU)|(Theory of Computation)",
-        "command_line": r"(MINGW32)|(cmd.exe)",
+        "command_line": r"(MINGW32)|(cmd\.exe)",
         "text_editor": r"(Sublime Text)|(notepad)",
         "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)|(ahk_usage_tracker)|(Stack Overflow)",
         "social": r"(Facebook)|(- chat -)",
