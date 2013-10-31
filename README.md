@@ -3,10 +3,6 @@ ahk_window_monitor
 
 A tool to monitor what programs you're using so you can see how much time you spend in different kinds of tasks
 
-Usage
------
-The project is still in development, and not quite usable or stable yet
-
 track_window.ahk
 ----------------
 This is a simple Autohotkey script that records the name of the active window as well as the timestamp and position of the window.

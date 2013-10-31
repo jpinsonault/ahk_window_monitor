@@ -31,15 +31,14 @@ def main(args):
     }
 
 
-    # print_csv_count("classification", parser, active_filter)
-    # print_csv_count("classification", parser, browser_filter)
-    # print_csv_count("active", parser)
-    # print_csv_count("monitor_number", parser, active_filter)
-    # print_csv_count("fullscreen", parser, active_filter)
-    # print_csv_count("window_title", parser, active_filter)
+    print_csv_count("classification", parser, active_filter)
+    print_csv_count("classification", parser, browser_filter)
+    print_csv_count("active", parser)
+    print_csv_count("monitor_number", parser, active_filter)
+    print_csv_count("fullscreen", parser, active_filter)
 
-    for activity in parser.filter_by(active_filter):
-        print activity["window_title"]
+    # for activity in parser.filter_by(active_filter):
+    #     print activity["window_title"]
     
 
 def print_csv_count(count_property, parser, filters={}):
