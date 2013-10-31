@@ -252,15 +252,14 @@ class Utils:
         "school": r"(CS 311)|(CS311)|(Quantified Life)|(PSU)|(Theory of Computation)",
         "command_line": r"(MINGW32)|(cmd.exe)",
         "text_editor": r"(Sublime Text)|(notepad)",
-        "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)|(ahk_usage_tracker)",
+        "programming": r"(Sublime Text)|(Intellij)|(Android Developers)|(Python)|(ahk_usage_tracker)|(Stack Overflow)",
         "social": r"(Facebook)|(- chat -)",
         "entertainment": r"(reddit)|(imgur)",
         "chat": r"(- chat -)",
         "email": r"(- Gmail -)",
         "games": r"(Nexus Mod Manager)|(Steam)|(skyrim)|(max payne)",
-        "stack_exchange": r"(Stack Overflow)",
         "search": r"(Google Search)",
-        "system": r"(Task Switching)|(Start Menu)|(jdiskreport)|(Libraries)|(Documents)|(\d ((\w+) )*remaining)|(\(\w:\))|(dropbox)",
+        "system": r"(Task Switching)|(Start Menu)|(jdiskreport)|(Libraries)|(\d ((\w+) )*remaining)|(\(\w:\))|(dropbox)",
     }
 
     @staticmethod
