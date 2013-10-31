@@ -6,9 +6,10 @@ from AHKLogParser import AHKLogParser
 """
     Graph ideas:
         Time spent in each category
-        Time spent in categories over time
         Most popular programs
-        Idle vs active periods
+        Time spent active, idle
+        Time spent fullscreen
+        Time spent on each monitor
         Wordle graphic from words in window titles
 """
 
@@ -21,30 +22,33 @@ def parse_args():
 
 
 def main(args):
-    # print("Parsing...")
     parser = AHKLogParser(args.log_file)
 
-    filters = {
+    active_filter = {"active": True}
+    browser_filter = {
         "active": True,
-        # "classification": ["any", ["other"]]
+        "classification": ['all', ['browser']]
     }
 
-    # filtered_data = [activity for activity in parser.filter_by(filters)]
 
-    # pprint(filtered_data)
+    # print_csv_count("classification", parser, active_filter)
+    # print_csv_count("classification", parser, browser_filter)
+    # print_csv_count("active", parser)
+    # print_csv_count("monitor_number", parser, active_filter)
+    # print_csv_count("fullscreen", parser, active_filter)
+    # print_csv_count("window_title", parser, active_filter)
 
-    # print("{} activity found, {} lines in log file, {} distinct activities".format(len(filtered_data), len(parser.log_dict), len(parser.activity_log)))
-
-    # for activity in filtered_data:
-    #     print ("{} - {}".format(activity["classification"][0], activity["window_title"]))
-
-    print_csv_count("classification", parser, filters)
+    for activity in parser.filter_by(active_filter):
+        print activity["window_title"]
     
 
 def print_csv_count(count_property, parser, filters={}):
+    print(count_property)
     print("Category, Time Spent")
     for category, count in parser.count_by(count_property, filters).iteritems():
         print("{}, {}".format(category, count))
+
+    print (",")
 
 
 if __name__ == '__main__':

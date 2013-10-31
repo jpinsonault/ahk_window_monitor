@@ -287,8 +287,14 @@ class Utils:
 
     @staticmethod
     def is_fullscreen(log_line):
-        # TODO
-        return False
+        try:
+            x = int(log_line["x"])
+            y = int(log_line["y"])
+        except ValueError:
+            return False
+
+        #  Check if the window is in the top left of either monitor
+        return (x == -1448 and y == 98) or (x == -8 and y == -8)
 
     @staticmethod
     def get_monitor(log_line):
